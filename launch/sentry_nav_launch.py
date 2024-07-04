@@ -149,7 +149,10 @@ def generate_launch_description():
                     'params_file': params_file,
                     'autostart': autostart,
                     'use_composition': use_composition,
-                    'use_respawn': use_respawn
+                    'use_respawn': use_respawn,
+                    'x_pose': TextSubstitution(text=str(init_pose['x'])),
+                    'y_pose': TextSubstitution(text=str(init_pose['y'])),
+                    'yaw': TextSubstitution(text=str(init_pose['yaw'])),
                 }.items()
             )
         ]

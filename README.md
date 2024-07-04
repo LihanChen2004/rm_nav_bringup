@@ -14,14 +14,14 @@ rosdep install -r --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y
 
 ## Launch
 
+请在仿真完全启动后，再启动导航节点，否则将导致初始位姿出错。
+
 多机器人仿真导航：
 
 ```sh
 ros2 launch rm_nav_bringup sentry_nav_launch.py \
   robots:=" \
   red_standard_robot1={x: 0.0, y: 0.0, yaw: 0.0}; \
-  blue_standard_robot1={x: 14.3, y: 7.85, yaw: 3.14}; \
+  blue_standard_robot1={x: 5.6, y: 1.4, yaw: 3.14}; \
   "
 ```
-
-注意在两个 rviz2 中分别给定机器人的初始位姿

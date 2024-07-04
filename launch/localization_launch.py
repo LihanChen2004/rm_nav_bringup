@@ -41,6 +41,12 @@ def generate_launch_description():
     use_respawn = LaunchConfiguration('use_respawn')
     log_level = LaunchConfiguration('log_level')
 
+    pose = {
+        'x': LaunchConfiguration('x_pose', default='-0.00'),
+        'y': LaunchConfiguration('y_pose', default='-0.00'),
+        'Y': LaunchConfiguration('yaw', default='0.00'),
+    }
+
     lifecycle_nodes = ['map_server', 'amcl']
 
     # Map fully qualified names to relative ones so the node's namespace can be prepended.
@@ -127,7 +133,12 @@ def generate_launch_description():
                 output='screen',
                 respawn=use_respawn,
                 respawn_delay=2.0,
-                parameters=[configured_params],
+                parameters=[
+                    configured_params,
+                    {
+                        'initial_pose': {'x': pose['x'], 'y': pose['y'], 'yaw': pose['Y']}
+                    }
+                ],
                 arguments=['--ros-args', '--log-level', log_level],
                 remappings=remappings),
             Node(
@@ -156,8 +167,14 @@ def generate_launch_description():
                 package='nav2_amcl',
                 plugin='nav2_amcl::AmclNode',
                 name='amcl',
-                parameters=[configured_params],
-                remappings=remappings),
+                parameters=[
+                    configured_params,
+                    {
+                        'initial_pose': {'x': pose['x'], 'y': pose['y'], 'yaw': pose['Y']}
+                    }
+                ],
+                remappings=remappings
+            ),
             ComposableNode(
                 package='nav2_lifecycle_manager',
                 plugin='nav2_lifecycle_manager::LifecycleManager',
