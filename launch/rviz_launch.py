@@ -69,7 +69,7 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         namespace=namespace,
-        arguments=['-d', namespaced_rviz_config_file],
+        arguments=['-d', namespaced_rviz_config_file, '--ros-args', '--log-level', 'ERROR'],
         output='screen',
         remappings=[('/map', 'map'),
                     ('/tf', 'tf'),
