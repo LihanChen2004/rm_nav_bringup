@@ -2,6 +2,8 @@
 
 用于 [rmul24_gazebo_simulator](https://github.com/LihanChen2004/rmul24_gazebo_simulator.git) 的导航仿真启动包。
 
+![nav_v1.0](.docs/nav_v1_0.gif)
+
 ## Cloned
 
 ```sh
